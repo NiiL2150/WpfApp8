@@ -1,0 +1,90 @@
+﻿<Window x:Class="WpfApp8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp8"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="500">
+    
+    <Window.Resources>
+        
+        <ControlTemplate TargetType="TextBox" x:Key="textBoxTemplate">
+            <Border CornerRadius="5" BorderThickness="2" BorderBrush="LightGray" Background="Gray" Margin="5">
+                <ContentControl Foreground="LightGray"/>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="TextBlock" x:Key="textBlockStyle">
+            <Setter Property="Foreground" Value="LightGray"/>
+        </Style>
+
+        <ControlTemplate TargetType="Button" x:Key="buttonTemplate">
+            <Border CornerRadius="20" Background="{TemplateBinding Background}" Margin="5">
+                <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Viewbox Margin="5">
+                        <TextBlock Style="{StaticResource textBlockStyle}" Text="{TemplateBinding Content}"/>
+                    </Viewbox>
+                </ContentControl>
+            </Border>
+        </ControlTemplate>
+        
+    </Window.Resources>
+    
+    <Grid Background="DimGray">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0">
+                <TextBlock Style="{StaticResource textBlockStyle}" Text="Username:"/>
+            </Viewbox>
+            <TextBox Grid.Column="1" Template="{StaticResource textBoxTemplate}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0">
+                <TextBlock Style="{StaticResource textBlockStyle}" Text="Password:"/>
+            </Viewbox>
+            <TextBox Grid.Column="1" Template="{StaticResource textBoxTemplate}"/>
+        </Grid>
+        <Grid Grid.Row="2" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <CheckBox VerticalAlignment="Center" Background="LightSlateGray">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                    </CheckBox.LayoutTransform>
+                    <Border CornerRadius="2" Margin="-24,2,0,0" Width="14" Height="13" BorderThickness="1" BorderBrush="LightGray"/>
+                </CheckBox>
+                <Viewbox>
+                    <TextBlock Style="{StaticResource textBlockStyle}" Text="Remember me"/>
+                </Viewbox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <Button Background="DarkGreen" Template="{StaticResource buttonTemplate}" Content="Log In"/>
+                <Button Background="DarkRed" Template="{StaticResource buttonTemplate}" Content="Cancel"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
